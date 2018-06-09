@@ -1,7 +1,11 @@
 package com.prestadorapp.infordigi.prestadorapp.model;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
 import com.prestadorapp.infordigi.prestadorapp.helper.ConfiguracaoFirebase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CadastroPrestador {
 
@@ -12,6 +16,7 @@ public class CadastroPrestador {
     private String pres_profissao;
     private String pres_email;
     private String pres_senha;
+    private String pres_caminhoFoto;
 
     public CadastroPrestador() {
     }
@@ -19,9 +24,39 @@ public class CadastroPrestador {
     public void salvarPrestador(){
 
         DatabaseReference databaseReference = ConfiguracaoFirebase.getReferenceFirebase();
-        DatabaseReference prestadorReference = databaseReference.child("prestadores").child(getPres_id());
+        DatabaseReference prestadorReference = databaseReference
+                .child("prestadores")
+                .child(getPres_id());
         prestadorReference.setValue(this);
 
+    }
+
+    public void atualizarPrestador(){
+
+        DatabaseReference databaseReference = ConfiguracaoFirebase.getReferenceFirebase();
+        DatabaseReference prestadorReference = databaseReference
+                .child("prestadores")
+                .child(getPres_id());
+
+        Map<String, Object> valorPrestador = convertMap();
+        prestadorReference.updateChildren(valorPrestador);
+
+    }
+
+    /**
+     *
+     *método mapea objeto prestador
+     *
+     */
+    public Map<String, Object> convertMap(){
+
+        HashMap<String, Object> prestadorMap = new HashMap<>();
+        prestadorMap.put("pres_id", getPres_id());
+        prestadorMap.put("pres_nome", getPres_nome());
+        prestadorMap.put("pres_email", getPres_email());
+        prestadorMap.put("pres_caminhoFoto", getPres_caminhoFoto());
+
+        return prestadorMap;
     }
 
     public String getPres_id() {
@@ -72,11 +107,20 @@ public class CadastroPrestador {
         this.pres_email = pres_email;
     }
 
+    @Exclude
     public String getPres_senha() {
         return pres_senha;
     }
 
     public void setPres_senha(String pres_senha) {
         this.pres_senha = pres_senha;
+    }
+
+    public String getPres_caminhoFoto() {
+        return pres_caminhoFoto;
+    }
+
+    public void setPres_caminhoFoto(String pres_caminhoFoto) {
+        this.pres_caminhoFoto = pres_caminhoFoto;
     }
 }

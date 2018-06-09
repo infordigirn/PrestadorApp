@@ -118,12 +118,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
                                 progressBarUsuario.setVisibility(View.GONE);
 
-                                //salvar dados do firebase
+                                //salvar dados do usuário
                                 String usu_id = task.getResult().getUser().getUid();
                                 usuario.setUsu_id(usu_id);
                                 usuario.salvarUsuario();
 
-                                //salvar dados do profile do firebase
+                                //salvar dados usuário do profile do firebase
                                 UsuarioFirebase.atualizarNomeUsuario(usuario.getUsu_nome());
 
                                 Toast.makeText(CadastroUsuarioActivity.this, "Dados cadastrados com sucesso!", Toast.LENGTH_SHORT).show();

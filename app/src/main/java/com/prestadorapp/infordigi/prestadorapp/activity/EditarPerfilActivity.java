@@ -24,6 +24,7 @@ import com.google.firebase.storage.UploadTask;
 import com.prestadorapp.infordigi.prestadorapp.R;
 import com.prestadorapp.infordigi.prestadorapp.helper.ConfiguracaoFirebase;
 import com.prestadorapp.infordigi.prestadorapp.helper.UsuarioFirebase;
+import com.prestadorapp.infordigi.prestadorapp.model.CadastroPrestador;
 import com.prestadorapp.infordigi.prestadorapp.model.CadastroUsuario;
 
 import java.io.ByteArrayOutputStream;
@@ -39,10 +40,9 @@ public class EditarPerfilActivity extends AppCompatActivity {
     private String identificadorUsuario;
 
     private CadastroUsuario usuarioLogado;
+    private CadastroPrestador prestadorLogado;
     private static final int SELECAO_GALERIA = 200;
     private StorageReference storageReference;
-
-    private String teste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +51,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
         //configurações iniciais
         usuarioLogado = UsuarioFirebase.getDadosUsuarioLogado();
+        prestadorLogado = UsuarioFirebase.getDadosPrestadorLogado();
         storageReference = ConfiguracaoFirebase.getReferenceStorage();
         identificadorUsuario = UsuarioFirebase.getIdentificadorUsuario();
 
@@ -141,12 +142,13 @@ public class EditarPerfilActivity extends AppCompatActivity {
                     imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
                     byte[] dadosImagem = baos.toByteArray();
 
-                    //salvar no banco
-                    StorageReference imagemReference = storageReference
+                    //salvar imagem usuário no banco
+                    StorageReference imagemUsuario = storageReference
                             .child("usu_imagens")
                             .child("perfil")
                             .child(identificadorUsuario + ".jpeg");
-                    UploadTask uploadTask = imagemReference.putBytes(dadosImagem);
+                    UploadTask uploadTask = imagemUsuario.putBytes(dadosImagem);
+
                     uploadTask.addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
@@ -161,6 +163,31 @@ public class EditarPerfilActivity extends AppCompatActivity {
                             atualizarFotoUsuario(url);
 
                             Toast.makeText(EditarPerfilActivity.this, "Sucesso ao fazer upload da imagem!", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    //salvar imagem prestador no banco
+                    StorageReference imagemPrestador = storageReference
+                            .child("pres_imagens")
+                            .child("perfil")
+                            .child(identificadorUsuario + ".jpeg");
+                    UploadTask uploadTask2 = imagemPrestador.putBytes(dadosImagem);
+
+                    uploadTask2.addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(EditarPerfilActivity.this, "Erro ao tentar fazer upload da imagem!", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            //recuperar local da foto
+                            Uri url = taskSnapshot.getDownloadUrl();
+                            atualizarFotoUsuario(url);
+
+                            Toast.makeText(EditarPerfilActivity.this, "Sucesso ao fazer upload da imagem!", Toast.LENGTH_SHORT).show();
+
                         }
                     });
 
@@ -179,6 +206,9 @@ public class EditarPerfilActivity extends AppCompatActivity {
         UsuarioFirebase.atualizarFotoUsuario(url);
 
         //atualizar foto no firebase
+        prestadorLogado.setPres_caminhoFoto(url.toString());
+        prestadorLogado.atualizarPrestador();
+
         usuarioLogado.setUsu_caminhoFoto(url.toString());
         usuarioLogado.atualizarUsuario();
 

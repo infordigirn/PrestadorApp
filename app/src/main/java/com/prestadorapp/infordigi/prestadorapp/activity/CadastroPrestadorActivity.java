@@ -21,6 +21,7 @@ import com.prestadorapp.infordigi.prestadorapp.R;
 import com.prestadorapp.infordigi.prestadorapp.helper.ConfiguracaoFirebase;
 import com.prestadorapp.infordigi.prestadorapp.helper.MaskFone;
 import com.prestadorapp.infordigi.prestadorapp.helper.MaskUtil;
+import com.prestadorapp.infordigi.prestadorapp.helper.UsuarioFirebase;
 import com.prestadorapp.infordigi.prestadorapp.model.CadastroPrestador;
 
 public class CadastroPrestadorActivity extends AppCompatActivity {
@@ -125,6 +126,9 @@ public class CadastroPrestadorActivity extends AppCompatActivity {
                             String pres_id = task.getResult().getUser().getUid();
                             prestador.setPres_id(pres_id);
                             prestador.salvarPrestador();
+
+                            //salvar dados do prestador do profile do firebase
+                            UsuarioFirebase.atualizarNomeUsuario(prestador.getPres_nome());
 
                             Toast.makeText(CadastroPrestadorActivity.this, "Dados cadastrado com sucesso!", Toast.LENGTH_SHORT).show();
 

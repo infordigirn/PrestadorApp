@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.prestadorapp.infordigi.prestadorapp.model.CadastroPrestador;
 import com.prestadorapp.infordigi.prestadorapp.model.CadastroUsuario;
 
 public class UsuarioFirebase {
@@ -100,6 +101,24 @@ public class UsuarioFirebase {
 
         return usuario;
 
+    }
+
+    public static CadastroPrestador getDadosPrestadorLogado(){
+
+        FirebaseUser firebaseUser = getUsuarioAtual();
+
+        CadastroPrestador prestador = new CadastroPrestador();
+        prestador.setPres_id(firebaseUser.getUid());
+        prestador.setPres_email(firebaseUser.getEmail());
+        prestador.setPres_nome(firebaseUser.getDisplayName());
+
+        if(firebaseUser.getPhotoUrl() == null){
+            prestador.setPres_caminhoFoto("");
+        }else{
+            prestador.setPres_caminhoFoto(firebaseUser.getPhotoUrl().toString());
+        }
+
+        return prestador;
     }
 
 }
