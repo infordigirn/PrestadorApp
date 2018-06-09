@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "653122328853",
+    "firebase_url": "https://prestadorapp.firebaseio.com",
+    "project_id": "prestadorapp",
+    "storage_bucket": "prestadorapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653122328853:android:0714dda883719e76",
+        "android_client_info": {
+          "package_name": "com.prestadorapp.infordigi.prestadorapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653122328853-vp2mb88jf72qhv40umcuv9abdd37bk9r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prestadorapp.infordigi.prestadorapp",
+            "certificate_hash": "031355a27a595c73ade819c433894308ffc6c774"
+          }
+        },
+        {
+          "client_id": "653122328853-dj0fodq83ku5c30pf1b78d7eq5mj648e.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "653122328853-dj0fodq83ku5c30pf1b78d7eq5mj648e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDs1y4oqpVGRb9zWd6zcKfSDJYT04BDejE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653122328853-dj0fodq83ku5c30pf1b78d7eq5mj648e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/ic_home"
+        android:icon="@drawable/ic_home_white_24dp"
+        android:title="@string/home"/>
+
+    <item
+        android:id="@+id/ic_search"
+        android:icon="@drawable/ic_search_white_24dp"
+        android:title="@string/pesquisa"/>
+
+    <item
+        android:id="@+id/ic_about"
+        android:icon="@drawable/ic_add_box_white_24dp"
+        android:title="Sobre"/>
+
+    <item
+        android:id="@+id/ic_rate"
+        android:icon="@drawable/ic_star_white_24dp"
+        android:title="Avaliação"/>
+
+    <item
+        android:id="@+id/ic_profile"
+        android:icon="@drawable/ic_person_white_24dp"
+        android:title="@string/perfil"/>
+
+</menu>
