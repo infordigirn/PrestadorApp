@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "653122328853",
-    "firebase_url": "https://prestadorapp.firebaseio.com",
-    "project_id": "prestadorapp",
-    "storage_bucket": "prestadorapp.appspot.com"
+    "project_number": "771554934855",
+    "firebase_url": "https://prestador-app.firebaseio.com",
+    "project_id": "prestador-app",
+    "storage_bucket": "prestador-app.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:653122328853:android:0714dda883719e76",
+        "mobilesdk_app_id": "1:771554934855:android:0714dda883719e76",
         "android_client_info": {
           "package_name": "com.prestadorapp.infordigi.prestadorapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "653122328853-vp2mb88jf72qhv40umcuv9abdd37bk9r.apps.googleusercontent.com",
+          "client_id": "771554934855-ajtempbglrdr6e4rg5bc5jmc1a4u46ta.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.prestadorapp.infordigi.prestadorapp",
@@ -23,17 +23,17 @@
           }
         },
         {
-          "client_id": "653122328853-dj0fodq83ku5c30pf1b78d7eq5mj648e.apps.googleusercontent.com",
+          "client_id": "771554934855-0gn41mtnjdn6cdbseob1onc9e8ti2adv.apps.googleusercontent.com",
           "client_type": 3
         },
         {
-          "client_id": "653122328853-dj0fodq83ku5c30pf1b78d7eq5mj648e.apps.googleusercontent.com",
+          "client_id": "771554934855-0gn41mtnjdn6cdbseob1onc9e8ti2adv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDs1y4oqpVGRb9zWd6zcKfSDJYT04BDejE"
+          "current_key": "AIzaSyA0hR5xQqsBvsZs25us2yV69EyVWiHXvA4"
         }
       ],
       "services": {
@@ -44,7 +44,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "653122328853-dj0fodq83ku5c30pf1b78d7eq5mj648e.apps.googleusercontent.com",
+              "client_id": "771554934855-0gn41mtnjdn6cdbseob1onc9e8ti2adv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

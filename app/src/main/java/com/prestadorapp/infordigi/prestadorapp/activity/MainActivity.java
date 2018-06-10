@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth auth;
 
-    //@SuppressLint("ResourceAsColor")
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
