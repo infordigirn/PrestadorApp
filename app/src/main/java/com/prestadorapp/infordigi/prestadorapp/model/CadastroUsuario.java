@@ -4,10 +4,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 import com.prestadorapp.infordigi.prestadorapp.helper.ConfiguracaoFirebase;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CadastroUsuario {
+public class CadastroUsuario implements Serializable {
 
     private String Usu_id;
     private String Usu_nome;
@@ -15,7 +16,11 @@ public class CadastroUsuario {
     private String Usu_celular;
     private String Usu_email;
     private String Usu_senha;
+    private String Usu_perfil = "cliente";
     private String Usu_caminhoFoto;
+    private int seguidores;
+    private int contratacoes;
+    private float avaliacoes;
 
     public CadastroUsuario() {
     }
@@ -50,7 +55,11 @@ public class CadastroUsuario {
         usuarioMap.put("usu_email", getUsu_email());
         usuarioMap.put("usu_nome", getUsu_nome());
         usuarioMap.put("usu_id", getUsu_id());
+        usuarioMap.put("usu_perfil", getUsu_perfil());
         usuarioMap.put("usu_caminhoFoto", getUsu_caminhoFoto());
+        usuarioMap.put("seguidores", getSeguidores());
+        usuarioMap.put("contratacoes", getContratacoes());
+        usuarioMap.put("avaliacoes", getAvaliacoes());
 
         return usuarioMap;
     }
@@ -96,6 +105,10 @@ public class CadastroUsuario {
         Usu_senha = usu_senha;
     }
 
+    public String getUsu_perfil() {
+        return Usu_perfil;
+    }
+
     public String getUsu_caminhoFoto() {
         return Usu_caminhoFoto;
     }
@@ -110,5 +123,29 @@ public class CadastroUsuario {
 
     public void setUsu_email(String usu_email) {
         Usu_email = usu_email;
+    }
+
+    public int getSeguidores() {
+        return seguidores;
+    }
+
+    public void setSeguidores(int seguidores) {
+        this.seguidores = seguidores;
+    }
+
+    public int getContratacoes() {
+        return contratacoes;
+    }
+
+    public void setContratacoes(int contratacoes) {
+        this.contratacoes = contratacoes;
+    }
+
+    public float getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public void setAvaliacoes(float avaliacoes) {
+        this.avaliacoes = avaliacoes;
     }
 }
