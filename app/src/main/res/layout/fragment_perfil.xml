@@ -73,7 +73,7 @@
         android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/textView9"
         app:layout_constraintStart_toEndOf="@+id/textView7"
-        app:layout_constraintTop_toBottomOf="@+id/textContracacao" />
+        app:layout_constraintTop_toBottomOf="@+id/textContratacao" />
 
     <TextView
         android:id="@+id/textView9"
@@ -102,7 +102,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textContracacao"
+        android:id="@+id/textContratacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -132,7 +132,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonEditarPerfil"
+        android:id="@+id/buttonAcaoPerfil"
         android:layout_width="0dp"
         android:layout_height="21dp"
         android:layout_marginTop="16dp"

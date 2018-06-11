@@ -89,12 +89,19 @@ public class EditarPerfilActivity extends AppCompatActivity {
                 //atualizar nome no perfil
                 UsuarioFirebase.atualizarNomeUsuario(nomeAtualizado);
 
-                //atualizar nome no banco
-                usuarioLogado.setUsu_nome(nomeAtualizado);
-                usuarioLogado.atualizarUsuario();
+                if(usuarioLogado.getUsu_perfil() == "cliente") {
+                    //atualizar nome no banco
+                    usuarioLogado.setUsu_nome(nomeAtualizado);
+                    usuarioLogado.atualizarUsuario();
 
-                Toast.makeText(EditarPerfilActivity.this, "Dados alterados com sucesso!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditarPerfilActivity.this, "Dados alterados com sucesso!", Toast.LENGTH_SHORT).show();
 
+                }else if(prestadorLogado.getPres_perfil() == "prestador"){
+                    prestadorLogado.setPres_nome(nomeAtualizado);
+                    prestadorLogado.atualizarPrestador();
+
+                    Toast.makeText(EditarPerfilActivity.this, "Dados alterados com sucesso!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -113,6 +120,12 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * método realiza troca da imagem do perfil
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -142,54 +155,58 @@ public class EditarPerfilActivity extends AppCompatActivity {
                     imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
                     byte[] dadosImagem = baos.toByteArray();
 
-                    //salvar imagem usuário no banco
-                    StorageReference imagemUsuario = storageReference
-                            .child("usu_imagens")
-                            .child("perfil")
-                            .child(identificadorUsuario + ".jpeg");
-                    UploadTask uploadTask = imagemUsuario.putBytes(dadosImagem);
+                    if(usuarioLogado.getUsu_perfil() == "cliente"){
+                        //salvar imagem usuário no banco
+                        StorageReference imagemUsuario = storageReference
+                                .child("usu_imagens")
+                                .child("perfil")
+                                .child(identificadorUsuario + ".jpeg");
+                        UploadTask uploadTask = imagemUsuario.putBytes(dadosImagem);
 
-                    uploadTask.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(EditarPerfilActivity.this, "Erro ao tentar fazer upload da imagem!", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        uploadTask.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(EditarPerfilActivity.this, "Erro ao tentar fazer upload da imagem!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                            //recuperar local da foto
-                            Uri url = taskSnapshot.getDownloadUrl();
-                            atualizarFotoUsuario(url);
+                                //recuperar local da foto
+                                Uri url = taskSnapshot.getDownloadUrl();
+                                atualizarFotoUsuario(url);
 
-                            Toast.makeText(EditarPerfilActivity.this, "Sucesso ao fazer upload da imagem!", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                                Toast.makeText(EditarPerfilActivity.this, "Sucesso ao fazer upload da imagem!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
 
-                    //salvar imagem prestador no banco
-                    StorageReference imagemPrestador = storageReference
-                            .child("pres_imagens")
-                            .child("perfil")
-                            .child(identificadorUsuario + ".jpeg");
-                    UploadTask uploadTask2 = imagemPrestador.putBytes(dadosImagem);
+                    if(prestadorLogado.getPres_perfil() == "prestador") {
+                        //salvar imagem prestador no banco
+                        StorageReference imagemPrestador = storageReference
+                                .child("pres_imagens")
+                                .child("perfil")
+                                .child(identificadorUsuario + ".jpeg");
+                        UploadTask uploadTask = imagemPrestador.putBytes(dadosImagem);
 
-                    uploadTask2.addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(EditarPerfilActivity.this, "Erro ao tentar fazer upload da imagem!", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        uploadTask.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(EditarPerfilActivity.this, "Erro ao tentar fazer upload da imagem!", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                            //recuperar local da foto
-                            Uri url = taskSnapshot.getDownloadUrl();
-                            atualizarFotoUsuario(url);
+                                //recuperar local da foto
+                                Uri url = taskSnapshot.getDownloadUrl();
+                                atualizarFotoPrestador(url);
 
-                            Toast.makeText(EditarPerfilActivity.this, "Sucesso ao fazer upload da imagem!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(EditarPerfilActivity.this, "Sucesso ao fazer upload da imagem!", Toast.LENGTH_SHORT).show();
 
-                        }
-                    });
+                            }
+                        });
+                    }
 
                 }
 
@@ -206,14 +223,20 @@ public class EditarPerfilActivity extends AppCompatActivity {
         UsuarioFirebase.atualizarFotoUsuario(url);
 
         //atualizar foto no firebase
-        prestadorLogado.setPres_caminhoFoto(url.toString());
-        prestadorLogado.atualizarPrestador();
-
         usuarioLogado.setUsu_caminhoFoto(url.toString());
         usuarioLogado.atualizarUsuario();
 
         Toast.makeText(EditarPerfilActivity.this, "Foto alterada com sucesso!", Toast.LENGTH_SHORT).show();
+    }
 
+    private void atualizarFotoPrestador(Uri url){
+
+        UsuarioFirebase.atualizarFotoUsuario(url);
+
+        prestadorLogado.setPres_caminhoFoto(url.toString());
+        prestadorLogado.atualizarPrestador();
+
+        Toast.makeText(EditarPerfilActivity.this, "Foto alterada com sucesso!", Toast.LENGTH_SHORT).show();
     }
 
     public void inicializarComponentes(){

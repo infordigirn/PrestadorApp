@@ -4,10 +4,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 import com.prestadorapp.infordigi.prestadorapp.helper.ConfiguracaoFirebase;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CadastroPrestador {
+public class CadastroPrestador implements Serializable {
 
     private String pres_id;
     private String pres_nome;
@@ -16,7 +17,11 @@ public class CadastroPrestador {
     private String pres_profissao;
     private String pres_email;
     private String pres_senha;
+    private String pres_perfil = "prestador";
     private String pres_caminhoFoto;
+    private int seguidores = 0;
+    private int contratacoes = 0;
+    private float avaliacoes = 0;
 
     public CadastroPrestador() {
     }
@@ -54,7 +59,11 @@ public class CadastroPrestador {
         prestadorMap.put("pres_id", getPres_id());
         prestadorMap.put("pres_nome", getPres_nome());
         prestadorMap.put("pres_email", getPres_email());
+        prestadorMap.put("pres_perfil", getPres_perfil());
         prestadorMap.put("pres_caminhoFoto", getPres_caminhoFoto());
+        prestadorMap.put("seguidores", getSeguidores());
+        prestadorMap.put("avaliacoes", getAvaliacoes());
+        prestadorMap.put("contratacoes", getContratacoes());
 
         return prestadorMap;
     }
@@ -92,11 +101,11 @@ public class CadastroPrestador {
     }
 
     public String getPres_profissao() {
-        return pres_profissao;
+        return pres_profissao.toUpperCase();
     }
 
     public void setPres_profissao(String pres_profissao) {
-        this.pres_profissao = pres_profissao;
+        this.pres_profissao = pres_profissao.toUpperCase();
     }
 
     public String getPres_email() {
@@ -116,11 +125,39 @@ public class CadastroPrestador {
         this.pres_senha = pres_senha;
     }
 
+    public String getPres_perfil() {
+        return pres_perfil;
+    }
+
     public String getPres_caminhoFoto() {
         return pres_caminhoFoto;
     }
 
     public void setPres_caminhoFoto(String pres_caminhoFoto) {
         this.pres_caminhoFoto = pres_caminhoFoto;
+    }
+
+    public int getSeguidores() {
+        return seguidores;
+    }
+
+    public void setSeguidores(int seguidores) {
+        this.seguidores = seguidores;
+    }
+
+    public int getContratacoes() {
+        return contratacoes;
+    }
+
+    public void setContratacoes(int contratacoes) {
+        this.contratacoes = contratacoes;
+    }
+
+    public float getAvaliacoes() {
+        return avaliacoes;
+    }
+
+    public void setAvaliacoes(float avaliacoes) {
+        this.avaliacoes = avaliacoes;
     }
 }
