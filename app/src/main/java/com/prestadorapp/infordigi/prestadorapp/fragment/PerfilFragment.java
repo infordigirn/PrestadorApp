@@ -52,6 +52,7 @@ public class PerfilFragment extends Fragment {
         buttonAcaoPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(getActivity(), EditarPerfilActivity.class);
                 startActivity(intent);
             }

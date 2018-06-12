@@ -8,6 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.prestadorapp.infordigi.prestadorapp.R;
+import com.prestadorapp.infordigi.prestadorapp.activity.SobreActivity;
+
+import mehdi.sakout.aboutpage.AboutPage;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +27,9 @@ public class SobreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sobre, container, false);
+        View  view = inflater.inflate(R.layout.fragment_sobre, container, false);
+
+        return view;
     }
 
 }

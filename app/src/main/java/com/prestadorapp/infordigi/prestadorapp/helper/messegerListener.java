@@ -34,7 +34,7 @@ public class messegerListener extends FirebaseMessagingService {
         if(remoteMessage.getNotification() != null){
 
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-            sendNotification(remoteMessage.getData().get("Renato"), remoteMessage.getNotification().getBody());
+            //sendNotification(remoteMessage.getData().get("Renato"), remoteMessage.getNotification().getBody());
 
         }
 

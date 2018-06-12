@@ -40,6 +40,9 @@ dependencies {
     implementation 'com.android.support:design:26.+'
     implementation 'com.github.ittianyu:BottomNavigationViewEx:1.2.4'
 
+    //dependencias do meydo
+    implementation 'com.github.medyo:android-about-page:1.2.4'
+
     //dependencias circleImageView
     implementation 'de.hdodenhof:circleimageview:2.2.0'
 

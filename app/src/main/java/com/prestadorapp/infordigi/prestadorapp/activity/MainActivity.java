@@ -99,7 +99,8 @@ public class MainActivity extends AppCompatActivity {
                         fragmentTransaction.replace(R.id.viewPager, new PesquisaFragment()).commit();
                         return true;
                     case R.id.ic_about:
-                        fragmentTransaction.replace(R.id.viewPager, new SobreFragment()).commit();
+                        //fragmentTransaction.replace(R.id.viewPager, new SobreFragment()).commit();
+                        startActivity(new Intent(getApplicationContext(), SobreActivity.class));
                         return true;
                     case R.id.ic_rate:
                         fragmentTransaction.replace(R.id.viewPager, new AvaliacaoFragment()).commit();
