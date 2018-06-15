@@ -4,16 +4,15 @@ import android.util.Log;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;
+import com.prestadorapp.infordigi.prestadorapp.adapter.Common;
 
 public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
 
-    private static final String TAG = "MyFirebaseIDService";
-
     @Override
     public void onTokenRefresh(){
-
+        super.onTokenRefresh();
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-        Log.d(TAG, "Refreshed token: " + refreshedToken);
+        Common.currentToken = refreshedToken;
 
         sendRegistrationToServe(refreshedToken);
 

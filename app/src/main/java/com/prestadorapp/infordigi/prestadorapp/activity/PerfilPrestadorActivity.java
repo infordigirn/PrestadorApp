@@ -19,8 +19,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.prestadorapp.infordigi.prestadorapp.R;
+import com.prestadorapp.infordigi.prestadorapp.adapter.Common;
 import com.prestadorapp.infordigi.prestadorapp.helper.ConfiguracaoFirebase;
 import com.prestadorapp.infordigi.prestadorapp.model.CadastroPrestador;
+
+import javax.sql.CommonDataSource;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -78,7 +81,6 @@ public class PerfilPrestadorActivity extends AppCompatActivity {
         buttonAcaoPerfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preencherEditText();
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
@@ -100,12 +102,6 @@ public class PerfilPrestadorActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         prestadoreRef.removeEventListener(valueEventListenerPerfilPrestador);
-    }
-
-    private void preencherEditText(){
-        String token = FirebaseInstanceId.getInstance().getToken();
-        Log.i("TOKEN CELULAR: ", token);
-        //textContratacao.setText(token);
     }
 
     private void recuperarDadosPerfilPrestador(){

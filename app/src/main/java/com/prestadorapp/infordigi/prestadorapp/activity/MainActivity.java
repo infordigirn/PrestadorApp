@@ -12,13 +12,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.prestadorapp.infordigi.prestadorapp.R;
+import com.prestadorapp.infordigi.prestadorapp.adapter.Common;
 import com.prestadorapp.infordigi.prestadorapp.fragment.AvaliacaoFragment;
 import com.prestadorapp.infordigi.prestadorapp.fragment.HomeFragment;
 import com.prestadorapp.infordigi.prestadorapp.fragment.PerfilFragment;
@@ -35,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //recuperar token
+        Common.currentToken = FirebaseInstanceId.getInstance().getToken();
+
+        Log.i("CURRENTOKEN: ", Common.currentToken);
 
         //configura toolbar
         Toolbar toolbar = findViewById(R.id.toolbarPrincipal);
